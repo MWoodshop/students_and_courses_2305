@@ -1,6 +1,7 @@
 require 'rspec'
 require './lib/course'
 require './lib/student'
+require 'pry'
 
 RSpec.describe Course do
   describe 'initialize' do
@@ -22,6 +23,9 @@ RSpec.describe Course do
       student2 = Student.new({ name: 'Jordan', age: 29 })
       course.enroll(student1)
       course.enroll(student2)
+
+      expect(course.students).to eq([student1, student2])
+
     end
 
     xit 'tests if students assigned to class equal or exceed capacity' do
