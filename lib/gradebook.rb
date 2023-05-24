@@ -35,4 +35,12 @@ class Gradebook
     end
     students
   end
+  # The University of Denver would like you to implement additional functionality. They would like to be able to track all the grades across all courses. They would also like to be able to find all students across all courses that have a grade in a given range.
+
+  # Method Name	Return Value (type)
+  # all_grades	Hash where the key is a Course object and the value is an Array of all the grades for that course.
+
+  def all_grades
+    @courses.map { |course| [course, course.students.map(&:grade)] }.to_h
+  end
 end
