@@ -4,6 +4,7 @@ require './lib/student'
 require 'pry'
 
 RSpec.describe Course do
+  # Iteration 2
   describe 'initialize' do
     it 'can initialize' do
       course = Course.new('Calculus', 2)
