@@ -12,6 +12,6 @@ class Course
   end
 
   def enroll(student)
-    @students << student
+    @students << student unless full?
   end
 end
