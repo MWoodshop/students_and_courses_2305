@@ -29,4 +29,13 @@ RSpec.describe Gradebook do
       expect(gradebook.courses).to eq([])
     end
   end
+
+  describe 'courses' do
+    it 'can add courses' do
+      gradebook = Gradebook.new('Prof. McGonagall')
+      course1 = Course.new('Calculus', 2)
+      gradebook.add_course(course1)
+      expect(gradebook.courses).to include(course1)
+    end
+  end
 end
