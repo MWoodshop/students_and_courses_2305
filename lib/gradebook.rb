@@ -23,10 +23,16 @@ class Gradebook
   end
 
   def list_all_students
-    all_students = {}
+    @courses.map { |course| [course, course.students] }.to_h
+  end
+
+  def students_below(threshold)
+    students = []
     @courses.each do |course|
-      all_students[course] = course.students
+      course.students.each do |student|
+        students << student if student.grade < threshold
+      end
     end
-    all_students
+    students
   end
 end
