@@ -50,4 +50,38 @@ RSpec.describe Gradebook do
       expect(gradebook.list_all_students).to eq({ course1 => [student1, student2] })
     end
   end
+
+  describe 'students_below' do
+    it 'can list students below a threshold' do
+      gradebook = Gradebook.new('Prof. McGonagall')
+      course1 = Course.new('Calculus', 2)
+      student1 = Student.new({ name: 'Harry', age: 21 })
+      student2 = Student.new({ name: 'Ron', age: 21 })
+      course1.enroll(student1)
+      course1.enroll(student2)
+      gradebook.add_course(course1)
+      student1.log_scores(89)
+      student1.log_scores(78)
+      student2.log_scores(59)
+      student2.log_scores(78)
+
+      expect(gradebook.students_below(80)).to eq([student2])
+    end
+
+    it 'can list students below a different threshold' do
+      gradebook = Gradebook.new('Prof. McGonagall')
+      course1 = Course.new('Calculus', 2)
+      student1 = Student.new({ name: 'Harry', age: 21 })
+      student2 = Student.new({ name: 'Ron', age: 21 })
+      course1.enroll(student1)
+      course1.enroll(student2)
+      gradebook.add_course(course1)
+      student1.log_scores(89)
+      student1.log_scores(78)
+      student2.log_scores(59)
+      student2.log_scores(50)
+
+      expect(gradebook.students_below(60)).to eq([student2])
+    end
+  end
 end
