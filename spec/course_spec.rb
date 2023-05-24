@@ -14,4 +14,18 @@ RSpec.describe Course do
       expect(course.capacity).to eq(2)
     end
   end
+
+  describe 'enroll' do
+    it 'enroll students to a class' do
+      course = Course.new('Calculus', 2)
+      student1 = Student.new({ name: 'Morgan', age: 21 })
+      student2 = Student.new({ name: 'Jordan', age: 29 })
+      course.enroll(student1)
+      course.enroll(student2)
+    end
+
+    xit 'tests if students assigned to class equal or exceed capacity' do
+      course = Course.new('Calculus', 2)
+    end
+  end
 end
