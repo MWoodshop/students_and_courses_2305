@@ -37,5 +37,17 @@ RSpec.describe Gradebook do
       gradebook.add_course(course1)
       expect(gradebook.courses).to include(course1)
     end
+
+    it 'can list all students' do
+      gradebook = Gradebook.new('Prof. McGonagall')
+      course1 = Course.new('Calculus', 2)
+      student1 = Student.new({ name: 'Harry', age: 21 })
+      student2 = Student.new({ name: 'Ron', age: 21 })
+      course1.enroll(student1)
+      course1.enroll(student2)
+      gradebook.add_course(course1)
+
+      expect(gradebook.list_all_students).to eq({ course1 => [student1, student2] })
+    end
   end
 end
